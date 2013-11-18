@@ -1,5 +1,40 @@
-@base: #f938ab;
+@import url(http://fonts.googleapis.com/css?family=Antic+Slab);
+@import url(http://fonts.googleapis.com/css?family=Damion);
+@base: url(../images/picnic-bg.jpg);
+@mainFont: 'Antic Slab', serif;
+@postcardFont: 'Damion', cursive;
 
 body{
-  background-color: @base;
+  background: @base;
+}
+
+#container {
+  margin: 0 auto;
+  margin-top: 150px;
+  background: #fff;
+  width: 900px;
+}
+
+h1{
+  font-family: @mainFont;
+  color: #381516;
+  padding-left: 10px;
+  margin-bottom: 0px;
+}
+
+h4.slogan {
+  font-family: @postcardFont;
+  padding-left: 15px;
+  position: relative;
+  top: -15px;
+  letter-spacing: 1px;
+  color: #0A5FB3;
+  font-size: 25px;
+}
+
+#front-card {
+  width: 700px;
+  height: 500px;
+  margin: 0 auto;
+  border: 1px solid black;
 }

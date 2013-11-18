@@ -10,14 +10,14 @@ var postcards = require('./routes/postcards');
 
 var app = express();
 var RedisStore = require('connect-redis')(express);
-mongoose.connect('mongodb://localhost/name-of-database');
+mongoose.connect('mongodb://localhost/southerngreetings');
 
 // configure express
 require('./config').initialize(app, RedisStore);
 
 // routes
 app.get('/', home.index);
-app.post('/create', postcards.create);
+app.post('/postcards', postcards.create);
 
 // start server & socket.io
 var common = require('./sockets/common');

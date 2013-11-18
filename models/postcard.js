@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 
 var Postcard = mongoose.Schema({
-  frontBGImg    :  String,
-  frontMessage  :  String,
+  background    :  String,
   frontFontColor:  String,
   backImg       :  String,
   city          :  String,

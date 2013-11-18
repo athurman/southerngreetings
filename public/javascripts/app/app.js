@@ -4,7 +4,7 @@ $(document).ready(initialize);
 
 $('#backgrounds-container div').on('click', clickSelectBGPattern);
 $('#preview-front').on('click', clickPreviewFront);
-$('#submit-front').on('click', submitFrontPostcard);
+$('#submit-front').on('click', clickFrontPostcard);
 
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
@@ -38,10 +38,16 @@ function clickPreviewFront() {
   $('#submit-front').removeClass('hidden');
 }
 
-function submitFrontPostcard(e) {
-  var url = '/create';
-  sendAjaxRequest(url, data, 'GET', null, e, function(data){
+function clickFrontPostcard(e) {
+  var city = $('#city').val();
+  var state = $('#states :selected').text();
+  var background = $('#backgrounds-container .selected').attr('id');
+  var url = '/postcards';
+  var data = {city:city, state:state, background:background};
+
+  sendAjaxRequest(url, data, 'post', null, e, function(data){
     console.log(data);
+    htmlStepTwo(data);
   });
 }
 
@@ -68,6 +74,15 @@ function htmlAddBackground(background) {
   }
   if(background === 'pattern2') {
     $('#front-card').css('background', 'url(/images/backgrounds/dark-burlap.jpg)');
+  }
+  if(background === 'pattern3') {
+    $('#front-card').css('background', 'url(/images/backgrounds/plaid-green.jpg)');
+  }
+}
+
+function htmlStepTwo(result) {
+  if(result.status === 'ok') {
+    window.location.href = '/postcards/' + result.id;
   }
 }
 

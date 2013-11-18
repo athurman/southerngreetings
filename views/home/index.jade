@@ -11,4 +11,32 @@ block content
           .small-6.columns
         .row
           .small-12.columns
+            #step1
+              h3 Step
+              #step-no-1
+        .row
+          .small-6.columns
+            p Design the front of your postcard:
+            ol
+              li Choose the background pattern.
+              li Choose your city and state.
+        .row
+          .small-3.small-offset-3.columns
+            input(type='text' placeholder='City' required='true')
+          .small-3.columns
+            select#states
+              option(selected='selected' value='default') Choose State
+              option(value='Alabama') Alabama
+              option(value='Florida') Florida
+              option(value='Georgia') Georgia
+              option(value='Kentucky') Kentucky
+              option(value='Mississippi') Mississippi
+              option(value='North Carolina') North Carolina
+              option(value='South Carolina') South Carolina
+          .small-3.columns
+        .row
+          .small-12.columns
+            #backgrounds-container
             #front-card
+        .row
+          .small-12.columns

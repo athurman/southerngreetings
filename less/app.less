@@ -13,26 +13,24 @@ body{
   margin-top: 150px;
   background: #fff;
   width: 900px;
+  -moz-box-shadow: 0px 5px 5px #333;
+  -webkit-box-shadow: 0px 5px 5px #333;
   box-shadow: 0px 5px 20px #333;
 }
 
-#step1 {
-  margin-left: 100px;
-  h3 {
-    font-family: @mainFont;
-    font-size: 40px;
-    color: #0A5FB3;
-    float: left;
-    padding-right: 8px;
-    margin-bottom: 0px;
-  }
+h1{
+  font-family: @mainFont;
+  color: #381516;
+  padding-left: 10px;
+  margin-bottom: 0px;
 }
 
 p {
   display: block;
   margin-bottom: 10px;
-  margin-left: 115px;
+  margin-left: 100px;
   font-family: @mainFont;
+  font-size: 20px;
 }
 
 ol {
@@ -52,15 +50,6 @@ select {
   border: 1px solid #ccc;
 }
 
-#step-no-1 {
-  background: url(/images/step-1.png) no-repeat;
-  background-size: 100%;
-  width: 50px;
-  height: 50px;
-  float: left;
-  margin-top: 8px;
-}
-
 .border-top {
   background: url(/images/frame-top.png) no-repeat;
   background-size: 100%;
@@ -69,13 +58,6 @@ select {
   margin: 0 auto;
   position: relative;
   top: 50px;
-}
-
-h1{
-  font-family: @mainFont;
-  color: #381516;
-  padding-left: 10px;
-  margin-bottom: 0px;
 }
 
 h4.slogan {
@@ -87,10 +69,156 @@ h4.slogan {
   color: #0A5FB3;
   font-size: 25px;
 }
+.center {
+  margin: 0 auto;
+  width: 100px;
+}
+
+.hidden {
+  display: none;
+}
+
+.bottom {
+  height: 100px;
+}
+
+.clear {
+  clear: both;
+}
+
+// -------------------------------------------------------------- //
+// -------------------------------------------------------------- //
+// ----------------------STEP 1 STYLING-------------------------- //
+
+#preview-front {
+  margin: 0 auto;
+  margin: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+  padding: 10px 20px;
+  font-family: @mainFont;
+  font-size: 25px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #CF453E;
+  border: 1px solid #B53C36;
+  border-radius: 7px;
+  -moz-box-shadow: 2px 2px 1px #8F302B;
+  -webkit-box-shadow: 2px 2px 1px #8F302B;
+  box-shadow: 2px 2px 1px #8F302B;
+}
 
 #front-card {
   width: 700px;
   height: 500px;
   margin: 0 auto;
-  border: 1px solid black;
+  border: 1px solid #381516;
+  h2 {
+    display: block;
+    font-family: @postcardFont;
+    font-size: 80px;
+    margin-top: 15px;
+    text-align: center;
+    &:nth-of-type(1) {
+      margin-bottom: 20px;
+    }
+  }
 }
+
+#front-card h2:nth-of-type(2) {
+  margin-top: 20px;
+}
+
+#backgrounds-container {
+  margin: 0 auto;
+  width: 750px;
+  margin-bottom: 20px;
+}
+
+#step1 {
+  margin-top: 30px;
+  margin-left: 100px;
+  h3 {
+    font-family: @mainFont;
+    font-size: 40px;
+    color: #0A5FB3;
+    float: left;
+    padding-right: 8px;
+    margin-bottom: 0px;
+
+  }
+}
+
+#step-no-1 {
+  background: url(/images/step-1.png) no-repeat;
+  background-size: 100%;
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin-top: 8px;
+}
+
+#submit-front {
+  margin: 0 auto;
+  margin: 20px 10px;
+  text-align: center;
+  padding: 10px 20px;
+  font-family: @mainFont;
+  font-size: 25px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #0A5FB3;
+  border: 1px solid #095199;
+  border-radius: 7px;
+  -moz-box-shadow: 2px 2px 1px #063D73;
+  -webkit-box-shadow: 2px 2px 1px #063D73;
+  box-shadow: 2px 2px 1px #063D73;
+}
+
+.selected {
+  border: 3px solid #30B5ED;
+}
+
+// --------------------------------------------------------------- //
+// --------------------------------------------------------------- //
+// --------------------BACKGROUND PATTERNS------------------------ //
+
+.border {
+  border: 3px solid #ccc;
+  &:hover {
+    -webkit-transition: all 0.8s ease;
+    -moz-transition: all 0.8s ease;
+    -o-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+    border: 3px solid #30B5ED;
+  }
+}
+
+#pattern1 {
+  background: url(/images/backgrounds/biege-burlap.jpg);
+  background-size: 100%;
+  width: 75px;
+  height: 75px;
+  margin-left: 15px;
+  float: left;
+}
+
+#pattern2 {
+  background: url(/images/backgrounds/dark-burlap.jpg);
+  background-size: 100%;
+  width: 75px;
+  height: 75px;
+  margin-left: 15px;
+  float: left;
+}
+
+// --------------------------------------------------------------- //
+// --------------------------------------------------------------- //
+// -------------------------STATE IMAGE--------------------------- //
+
+#pc-state {
+  margin: 0 auto;
+  display: block;
+  margin: 25px;
+}
+

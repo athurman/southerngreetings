@@ -1,10 +1,10 @@
-/* global document, window, io */
+/* global document, sendAjaxRequest, window, io */
 
 $(document).ready(initialize);
 
 $('#backgrounds-container div').on('click', clickSelectBGPattern);
 $('#preview-front').on('click', clickPreviewFront);
-$('#submit-front').on('click', clickFrontPostcard);
+$('#submit-front').on('click', clickFrontPostcardSubmit);
 
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
@@ -26,25 +26,26 @@ function clickPreviewFront() {
   var city = $('#city').val();
   var state = $('#states :selected').text();
   var background = $('#backgrounds-container .selected').attr('id');
+  var color = $('#color').val();
   var $h2 = $('<h2>').text(city + ', ' + state);
-
   $('#front-card').addClass('postard');
-  htmlAddState(state);
-  $('#front-card').append($h2);
+  sendAjaxRequest('/states', {name: state}, 'get', null, null, function(data){
+    console.log(data);
+    htmlAddState(data, $h2, color);
+  });
   htmlAddBackground(background);
-
-
   $('#front-card').removeClass('hidden');
   $('#submit-front').removeClass('hidden');
 }
 
-function clickFrontPostcard(e) {
+function clickFrontPostcardSubmit(e) {
   var city = $('#city').val();
   var state = $('#states :selected').text();
+  var color = $('#color').val();
   var background = $('#backgrounds-container .selected').attr('id');
   var url = '/postcards';
-  var data = {city:city, state:state, background:background};
-
+  var data = {city:city, state:state, background:background, frontFontColor:color};
+  //Save front portion of postcard to database, will update back portion on step 2 page.
   sendAjaxRequest(url, data, 'post', null, e, function(data){
     console.log(data);
     htmlStepTwo(data);
@@ -55,16 +56,23 @@ function clickFrontPostcard(e) {
 // ------------------------------------------------------------------//
 // ----------------------HTML FUNCTION-------------------------------//
 
-function htmlAddState(state) {
-  if(state === 'TN') {
-    var $divtn = $('<div>').attr('id', 'pc-state');
-    $divtn.css('background', 'url(/images/states/tennessee.png) no-repeat').css('width', '650').css('height', '167');
-    $('#front-card').append($divtn);
+function htmlAddState(state, $h2, color) {
+  var $div = $('<div>').attr('id','pc-state');
+  $div.css('background', 'url(/images/states/' + state.img + ') no-repeat').css('width', state.width).css('height', state.height).css('margin', '0 auto');
+  if(state.isLandscape) {
+    $('#front-card').css('height', '500').css('width', '700');
+    $('#front-card').append($div);
+  } else {
+    $('#front-card').css('height', '700').css('width', '500');
+    $('#front-card').append($div);
   }
-  if(state === 'KY') {
-    var $divky = $('<div>').attr('id', 'pc-state');
-    $divky.css('background', 'url(/images/states/kentucky.png) no-repeat').css('width', '464').css('height', '200').css('margin', '0 auto');
-    $('#front-card').append($divky);
+  $('#front-card').append($h2);
+  $('#front-card h2').css('color', color);
+  var h2Height = parseInt($('#front-card h2:nth-of-type(2)').css('height').slice(0, -2));
+  if(h2Height > 112) {
+    $('#front-card h2').css('font-size', '60px');
+  } else {
+    $('#front-card h2').css('font-size', '80px');
   }
 }
 

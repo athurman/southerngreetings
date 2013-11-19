@@ -33,6 +33,7 @@ block content
               option(value='Florida') FL
               option(value='Georgia') GA
               option(value='Kentucky') KY
+              option(value='Louisiana') LA
               option(value='Mississippi') MS
               option(value='North Carolina') NC
               option(value='South Carolina') SC
@@ -40,6 +41,12 @@ block content
               option(value='Virginia') VA
               option(value='West Virginia') WV
           .small-3.columns
+        .row
+          .small-6.small-offset-3.columns
+            p Choose the text color.
+        .row
+          .small-2.small-offset-5.columns
+            input#color(type='text' class='color {required:false, hash:true, pickerMode:"HSV"}' value="000000")
         .row
           .small-6.small-offset-3.columns
             p Choose the background pattern.

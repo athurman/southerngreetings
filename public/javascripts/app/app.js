@@ -166,7 +166,9 @@ function htmlStepTwo(result) {
 }
 
 function htmlStepThree(postcard) {
-
+  if(postcard._id) {
+    window.location.href = '/postcards/' + postcard._id + '/complete';
+  }
 }
 
 

@@ -18,8 +18,10 @@ require('./config').initialize(app, RedisStore);
 
 // routes
 app.get('/', home.index);
+app.post('/upload', postcards.upload);
 
 app.post('/postcards', postcards.create);
+app.put('/postcards/update', postcards.update);
 app.get('/postcards/:id', postcards.show);
 
 app.get('/make-states', states.make);

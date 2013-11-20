@@ -3,7 +3,7 @@ extends ../template/layout
 block content
   .row
     .small-12.columns
-      #container
+      #container(data-postcard-id=postcard.id)
         h1 Southern Greetings
         .row
           .small-6.columns
@@ -21,5 +21,60 @@ block content
           .small-12.columns
             .border-top
         .row
+          .small-6.small-offset-3.columns
+            p Create your holiday greeting.
+        .row
+          .small-3.small-offset-3.columns
+            select#seasons-greeting
+              option(value="Season's Greetings") Season's Greetings
+              option(value='Happy Holidays') Happy Holidays
+              option(value='Merry Christmas') Merry Christmas
+              option(value='Warm Wishes') Warmest Wishes for Happy Holidays
+              option(value='Best Wishes') Best Wishes for a Joyous Season
+          .small-1.columns
+            p(style='text-align: center; margin:0;') from
+          .small-2.columns
+            input#family-name(type='text' placeholder='the Johnsons' required='true')
+          .small-3.columns
+        .row
+          .small-6.small-offset-3.columns
+            p Choose the text color.
+        .row
+          .small-2.small-offset-5.columns
+            input#color-back(type='text' class='color {required:false, hash:true, pickerMode:"HSV"}' value="000000")
+        .row
+          .small-6.small-offset-3.columns
+            p Choose your image for the card.
+        .row
+          .small-8.small-offset-2.columns
+            form#upload-image(method='post' enctype='multipart/form-data' action='/upload')
+              .row
+                .small-5.small-offset-1.columns
+                  input#file(type='file' name='file')
+                .small-6.columns
+                  a#submit-image.button.success.small(data-postcard-id=postcard.id)
+          .small-2.columns
+            p#upload-error
+        .row
+          .small-6.small-offset-3.columns
+            output#list
+          .small-3.columns
+        .row
+          .small-2.small-offset-5.columns
+            input.button#preview-back(type='button' value='Preview')
+          .small-5.columns
+        .row
           .small-12.columns
-            #back-card
+            #back-card.hidden
+              #back-img-container
+              #back-img-message
+        .row
+          .small-2.small-offset-5.columns
+            input.button#submit-back.hidden(type='button' value='SUBMIT')
+          .small-5.columns
+        .row
+          .small-12.columns
+            .border-bottom
+        .row
+          .small-12.columns
+            .bottom

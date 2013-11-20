@@ -2,13 +2,79 @@
 
 $(document).ready(initialize);
 
-$('#backgrounds-container div').on('click', clickSelectBGPattern);
-$('#preview-front').on('click', clickPreviewFront);
-$('#submit-front').on('click', clickFrontPostcardSubmit);
+function initialize(){
+  $(document).foundation();
+  initializeSocketIO();
+  // checkFileReaderFunctionality();
+  // $('#file').on('change', handleFileSelect);
+  $('#backgrounds-container div').on('click', clickSelectBGPattern);
+  $('#preview-front').on('click', clickPreviewFront);
+  $('#submit-front').on('click', clickFrontPostcardSubmit);
+  $('#preview-back').on('click', clickPreviewBack);
+  $('#submit-back').on('click', clickBackPostcardSubmit);
+  $('a#submit-image').on('click', submitUploadImage);
+}
 
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
 // ------------------------CLICK FUNCTION----------------------------//
+
+function submitUploadImage(e) {
+  var url = '/upload';
+  var postcardId = $(this).data('postcard-id');
+  var fileData = new FormData();
+  var file, fileName;
+  $('#upload-image input[type="file"]').each(function(i){
+    if(this.files[0]){
+      file = this.files[0];
+      fileName = $(this).attr('name');
+      fileData.append(fileName,file);
+    }
+  });
+  fileData.append('postcardId',postcardId);
+  sendAjaxFiles(url, fileData, 'post', null, e, function(data){
+    switch(data.status){
+      case 'ok':
+        window.location = '/';
+      break;
+      case 'error':
+        $('p#upload-error').text('There was an error uploading your file');
+      break;
+    }
+  });
+}
+
+// function handleFileSelect(evt) {
+//   $('#list span').remove();
+//   var file = evt.target.files[0]; // FileList object
+
+//   // Loop through the FileList and render image files as thumbnails.
+
+//   // Only process image files.
+//   // if (!file.type.match('image.*')) {
+//   //   continue;
+//   // } else {
+//   //   alert('Please select an image filetype.');
+//   // }
+
+//   var reader = new FileReader();
+
+//   // Closure to capture the file information.
+//   reader.onload = (function(theFile) {
+//     return function(e) {
+//       // Render thumbnail.
+//       var span = document.createElement('span');
+//       span.innerHTML = ['<img class="thumb" src="', e.target.result,
+//                         '" title="', escape(theFile.name), '"/>'].join('');
+//       document.getElementById('list').insertBefore(span, null);
+//     };
+//   })(file);
+
+//   // Read in the image file as a data URL.
+//   reader.readAsDataURL(file);
+//   evt.target.files.length = 0;
+// }
+
 
 function clickSelectBGPattern() {
   $('#backgrounds-container div').removeClass('selected');
@@ -49,6 +115,41 @@ function clickFrontPostcardSubmit(e) {
   sendAjaxRequest(url, data, 'post', null, e, function(data){
     console.log(data);
     htmlStepTwo(data);
+  });
+}
+
+function clickPreviewBack() {
+  $('#back-img-message h4').remove();
+  $('#back-img-container img').remove();
+
+  var backGreeting = $('#seasons-greeting :selected').text();
+  var backFamilyName = $('#family-name').val();
+  var color = $('#color-back').val();
+  var backImg = $('#list span img').attr('src');
+
+  var $h4 = $('<h4>').text(backGreeting + ' from ' + backFamilyName);
+  $h4.css('color', color);
+  $('#back-img-message').append($h4);
+
+  var $img = $('<img>');
+  $img.attr('src', backImg);
+  $('#back-img-container').append($img);
+
+  $('#back-card').removeClass('hidden');
+  $('#submit-back').removeClass('hidden');
+}
+
+function clickBackPostcardSubmit(e) {
+  var url = '/postcards/update';
+  var backGreeting = $('#seasons-greeting :selected').text();
+  var backFamilyName = $('#family-name').val();
+  var color = $('#color-back').val();
+  var backImg = $('#list span img').attr('src');
+
+  var data = {backGreeting:backGreeting, backFamilyName:backFamilyName, backFontColor:color, backImg:backImg};
+
+  sendAjaxRequest(url, data, 'post', 'put', e, function(data){
+    console.log(data);
   });
 }
 
@@ -98,12 +199,16 @@ function htmlStepTwo(result) {
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
 
-var socket;
+// function checkFileReaderFunctionality() {
+//     // Check for the various File API support.
+//   if (window.File && window.FileReader && window.FileList && window.Blob) {
+//     // Great success! All the File APIs are supported.
+//   } else {
+//     console.log('The File APIs are not fully supported in this browser.');
+//   }
+// }
 
-function initialize(){
-  $(document).foundation();
-  initializeSocketIO();
-}
+var socket;
 
 function initializeSocketIO(){
   var port = window.location.port ? window.location.port : '80';

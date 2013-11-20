@@ -25,6 +25,8 @@
     "grunt-contrib-watch": "*",
     "grunt-contrib-jshint": "*",
     "grunt-notify": "*",
-    "home-dir": "*"
+    "home-dir": "*",
+    "node-fs": "*",
+    "path": "*"
   }
 }

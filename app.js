@@ -18,9 +18,13 @@ require('./config').initialize(app, RedisStore);
 
 // routes
 app.get('/', home.index);
+
 app.post('/postcards', postcards.create);
+app.get('/postcards/:id', postcards.show);
+
 app.get('/make-states', states.make);
 app.get('/states', states.find);
+
 
 // start server & socket.io
 var common = require('./sockets/common');

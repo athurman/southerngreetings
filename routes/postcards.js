@@ -6,3 +6,7 @@ exports.create = function(req, res){
     res.send({status: 'ok', id: postcard._id});
   });
 };
+
+exports.show = function(req, res){
+  res.render('home/show', {title: 'SouthernGreetings'});
+};

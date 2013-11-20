@@ -21,8 +21,9 @@ app.get('/', home.index);
 app.post('/upload', postcards.upload);
 
 app.post('/postcards', postcards.create);
-app.put('/postcards/update', postcards.update);
 app.get('/postcards/:id', postcards.show);
+app.put('/postcards/:id/update', postcards.update);
+app.get('/postcards/:id/complete',postcards.print);
 
 app.get('/make-states', states.make);
 app.get('/states', states.find);

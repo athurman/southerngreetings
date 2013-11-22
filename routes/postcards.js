@@ -27,7 +27,7 @@ exports.upload = function(req, res){
         if (err) throw err;
         console.error('Only .png .jpg or .gif files are allowed!');
         res.send({status: 'error'});
-    });
+      });
   }
 };
 
@@ -40,7 +40,6 @@ exports.create = function(req, res){
                     frontFontColor: req.body.frontFontColor,
                     flag: req.body.flag
                   }).save(function(err, postcard){
-                    console.log(postcard);
                     res.send({status: 'ok', id: postcard._id});
                   });
   });
@@ -62,6 +61,7 @@ exports.update = function(req, res){
 
 exports.print = function(req,res){
   Postcard.findById(req.params.id).populate('state').exec(function(err, postcard){
+    console.log(postcard);
     res.render('home/print', {title: 'SouthernGreetings', postcard:postcard});
   });
 };

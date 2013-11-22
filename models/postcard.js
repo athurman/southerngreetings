@@ -7,8 +7,9 @@ var Postcard = mongoose.Schema({
   backFontColor :  String,
   backGreeting  :  String,
   backFamilyName:  String,
+  flag          :  {},
   city          :  String,
-  state         :  String,
+  state         :  {type: mongoose.Schema.Types.ObjectId, ref: 'State'},
   user          :  {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   createdAt     :  {type: Date, default: Date.now}
 });

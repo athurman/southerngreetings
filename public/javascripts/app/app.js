@@ -11,11 +11,21 @@ function initialize(){
   $('#preview-back').on('click', clickPreviewBack);
   $('#submit-back').on('click', clickBackPostcardSubmit);
   $('a#submit-image').on('click', submitUploadImage);
+  $('#choose-flag div').on('click', clickCreateFlag);
+  $('#print').on('click', clickPrintCardtoImage);
+  draggabillyTest();
 }
 
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
 // ------------------------CLICK FUNCTION----------------------------//
+
+function draggabillyInitialize(){
+  var elem = document.querySelector('.draggie');
+  var draggie = new Draggabilly( elem, {
+    containment: true
+  });
+}
 
 function submitUploadImage(e) {
   var url = '/upload';
@@ -65,10 +75,13 @@ function clickPreviewFront() {
   });
   htmlAddBackground(background);
   $('#front-card').removeClass('hidden');
+  $('#choose-flag').removeClass('hidden');
   $('#submit-front').removeClass('hidden');
+  window.location.href = '/#front-card';
 }
 
 function clickFrontPostcardSubmit(e) {
+  var flag = {};
   var city = $('#city').val();
   var state = $('#states :selected').text();
   var color = $('#color').val();
@@ -85,7 +98,6 @@ function clickFrontPostcardSubmit(e) {
 function clickPreviewBack() {
   $('#back-img-message h4').remove();
 
-
   var backGreeting = $('#seasons-greeting :selected').text();
   var backFamilyName = $('#family-name').val();
   var color = $('#color-back').val();
@@ -96,6 +108,7 @@ function clickPreviewBack() {
 
   $('#back-card').removeClass('hidden');
   $('#submit-back').removeClass('hidden');
+  // window.location.href = '/' + $('#container').data('postcard-id') + '/#back-card';
 }
 
 function clickBackPostcardSubmit(e) {
@@ -111,6 +124,24 @@ function clickBackPostcardSubmit(e) {
   });
 }
 
+// Using draggabilly to create icon for state
+
+function clickCreateFlag() {
+  var id = $(this).attr('id');
+  if(id === 'flag1'){
+    $('.draggie').css('background', 'url(/images/flags/heart-flag.png) no-repeat').css('background-size', '100%');
+  }
+  draggabillyInitialize();
+}
+
+function clickPrintCardtoImage() {
+  html2canvas($('#front-card'), {
+    onrendered: function(canvas) {
+      $('#snapshot-container').append(canvas);
+    }
+  });
+}
+
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
 // ----------------------HTML FUNCTION-------------------------------//
@@ -118,6 +149,8 @@ function clickBackPostcardSubmit(e) {
 function htmlAddState(state, $h2, color) {
   var $div = $('<div>').attr('id','pc-state');
   $div.css('background', 'url(/images/states/' + state.img + ') no-repeat').css('width', state.width).css('height', state.height).css('margin', '0 auto');
+  var $draggie = $('<div>').addClass('draggie');
+  $div.append($draggie);
   if(state.isLandscape) {
     $('#front-card').css('height', '500').css('width', '700');
     $('#front-card').append($div);
@@ -137,13 +170,13 @@ function htmlAddState(state, $h2, color) {
 
 function htmlAddBackground(background) {
   if(background === 'pattern1') {
-    $('#front-card').css('background', 'url(/images/backgrounds/biege-burlap.jpg)');
+    $('#front-card').css('background', 'url(/images/backgrounds/pattern1.jpg)');
   }
   if(background === 'pattern2') {
-    $('#front-card').css('background', 'url(/images/backgrounds/dark-burlap.jpg)');
+    $('#front-card').css('background', 'url(/images/backgrounds/pattern2.jpg)');
   }
   if(background === 'pattern3') {
-    $('#front-card').css('background', 'url(/images/backgrounds/plaid-green.jpg)');
+    $('#front-card').css('background', 'url(/images/backgrounds/pattern3.jpg)');
   }
 }
 

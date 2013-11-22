@@ -10,3 +10,33 @@ block content
             h4.slogan Seasons Greetings, Southern Style
           .small-6.columns
         .row
+          .small-12.columns
+            if postcard.state.isLandscape
+              #front-card(style='background: url(/images/backgrounds/#{postcard.background}.jpg);')
+                h2(style='color: #{postcard.frontFontColor}') Greetings from
+                #pc-state(style='width: #{postcard.state.width}px; height: #{postcard.state.height}px; background: url(/images/states/#{postcard.state.img}) no-repeat; margin: 0 auto;')
+                h2(style='color: #{postcard.frontFontColor}') #{postcard.city}, #{postcard.state.name}
+            else
+              #front-card(style='width: 500px; height: 700px; background: url(/images/backgrounds/#{postcard.background}.jpg);')
+                h2(style='color: #{postcard.frontFontColor}') Greetings from
+                #pc-state(style='width: #{postcard.state.width}px; height: #{postcard.state.height}px; background: url(/images/states/#{postcard.state.img}) no-repeat; margin: 0 auto;')
+                h2(style='color: #{postcard.frontFontColor}') #{postcard.city}, #{postcard.state.name}
+        .row
+          .small-12.columns
+            #back-card
+              #back-img-container
+                img(src='/uploads/#{postcard.id}/#{postcard.backImg}')
+              #back-img-message
+                h4(style='color: #{postcard.backFontColor}') #{postcard.backGreeting} from #{postcard.backFamilyName}
+        .row
+          .small-3.small-offset-3.columns
+            form(action='/postcards/#{postcard.id}', method='post')
+                  input(type='hidden', name='_method', value='delete')
+                  button#delete.alert.radius(type='submit') Delete
+          .small-3.columns
+            input.button#print(type='button' value='Print')
+          .small-3.columns
+        .row
+          .small-12.columns
+            #snapshot-container
+

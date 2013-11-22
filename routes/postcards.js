@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Postcard = mongoose.model('Postcard');
+var State = mongoose.model('State');
 var path = require('path');
 var fs = require('fs');
 
@@ -7,9 +8,9 @@ exports.upload = function(req, res){
 
   console.log(req.files.file);
   console.log(req.body.postcardId);
-  fs.mkdirSync('./public/uploads/'+req.body.postcardId+'/');
+  fs.mkdirSync('./public/uploads/' + req.body.postcardId + '/');
   var tempPath = req.files.file.path,
-        targetPath = path.resolve('./public/uploads/' + req.body.postcardId + '/' +req.files.file.name);
+        targetPath = path.resolve('./public/uploads/' + req.body.postcardId + '/' + req.files.file.name);
   if (path.extname(req.files.file.name).toLowerCase() === '.png' || '.jpg' || '.gif') {
     fs.rename(tempPath, targetPath, function(err) {
       if (err) throw err;
@@ -31,8 +32,18 @@ exports.upload = function(req, res){
 };
 
 exports.create = function(req, res){
-  new Postcard(req.body).save(function(err, postcard){
-    res.send({status: 'ok', id: postcard._id});
+  State.findOne({name: req.body.state}, function(err, state){
+    new Postcard(
+                  {
+                    city: req.body.city,
+                    state: state,
+                    background:req.body.background,
+                    frontFontColor:req.body.frontFontColor
+                  }
+                ).save(function(err, postcard){
+                    console.log(postcard);
+                    res.send({status: 'ok', id: postcard._id});
+                  });
   });
 };
 
@@ -51,7 +62,13 @@ exports.update = function(req, res){
 };
 
 exports.print = function(req,res){
-  Postcard.findById(req.params.id, function(err, postcard){
+  Postcard.findById(req.params.id).populate('state').exec(function(err, postcard){
     res.render('home/print', {title: 'SouthernGreetings', postcard:postcard});
+  });
+};
+
+exports.delete = function(req, res){
+  Postcard.findByIdAndRemove(req.params.id, function(err, postcard){
+    res.redirect('/');
   });
 };

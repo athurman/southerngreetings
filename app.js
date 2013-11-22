@@ -24,6 +24,7 @@ app.post('/postcards', postcards.create);
 app.get('/postcards/:id', postcards.show);
 app.put('/postcards/:id/update', postcards.update);
 app.get('/postcards/:id/complete', postcards.print);
+app.delete('/postcards/:id', postcards.delete);
 
 app.get('/make-states', states.make);
 app.get('/states', states.find);

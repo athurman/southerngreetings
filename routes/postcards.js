@@ -33,14 +33,13 @@ exports.upload = function(req, res){
 
 exports.create = function(req, res){
   State.findOne({name: req.body.state}, function(err, state){
-    new Postcard(
-                  {
+    new Postcard({
                     city: req.body.city,
                     state: state,
-                    background:req.body.background,
-                    frontFontColor:req.body.frontFontColor
-                  }
-                ).save(function(err, postcard){
+                    background: req.body.background,
+                    frontFontColor: req.body.frontFontColor,
+                    flag: req.body.flag
+                  }).save(function(err, postcard){
                     console.log(postcard);
                     res.send({status: 'ok', id: postcard._id});
                   });

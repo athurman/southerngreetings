@@ -1,4 +1,4 @@
-/* global document, sendAjaxRequest, sendAjaxFiles, FormData, window, io */
+/* global document, sendAjaxRequest, sendAjaxFiles, FormData, Draggabilly, html2canvas, window, io */
 
 $(document).ready(initialize);
 
@@ -13,7 +13,6 @@ function initialize(){
   $('a#submit-image').on('click', submitUploadImage);
   $('#choose-flag div').on('click', clickCreateFlag);
   $('#print').on('click', clickPrintCardtoImage);
-  draggabillyTest();
 }
 
 // ------------------------------------------------------------------//
@@ -82,15 +81,26 @@ function clickPreviewFront() {
 
 function clickFrontPostcardSubmit(e) {
   var flag = {};
+  flag.top = $('.draggie').css('top');
+  flag.left = $('.draggie').css('left');
+  if($('.draggie').hasClass('flag1')){
+    flag.img = 'flag1';
+  }
+  if($('.draggie').hasClass('flag2')){
+    flag.img = 'flag2';
+  }
+  if($('.draggie').hasClass('flag3')){
+    flag.img = 'flag3';
+  }
+
   var city = $('#city').val();
   var state = $('#states :selected').text();
   var color = $('#color').val();
   var background = $('#backgrounds-container .selected').attr('id');
   var url = '/postcards';
-  var data = {city:city, state:state, background:background, frontFontColor:color};
+  var data = {city:city, state:state, background:background, frontFontColor:color, flag:flag};
   //Save front portion of postcard to database, will update back portion on step 2 page.
   sendAjaxRequest(url, data, 'post', null, e, function(data){
-    console.log(data);
     htmlStepTwo(data);
   });
 }
@@ -129,7 +139,13 @@ function clickBackPostcardSubmit(e) {
 function clickCreateFlag() {
   var id = $(this).attr('id');
   if(id === 'flag1'){
-    $('.draggie').css('background', 'url(/images/flags/heart-flag.png) no-repeat').css('background-size', '100%');
+    $('.draggie').css('background', 'url(/images/flags/flag1.png) no-repeat').css('background-size', '100%').addClass('flag1').removeClass('flag2').removeClass('flag3');
+  }
+  if(id === 'flag2'){
+    $('.draggie').css('background', 'url(/images/flags/flag2.png) no-repeat').css('background-size', '100%').addClass('flag2').removeClass('flag1').removeClass('flag3');
+  }
+  if(id === 'flag3'){
+    $('.draggie').css('background', 'url(/images/flags/flag3.png) no-repeat').css('background-size', '100%').addClass('flag3').removeClass('flag2').removeClass('flag1');
   }
   draggabillyInitialize();
 }

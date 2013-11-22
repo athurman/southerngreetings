@@ -15,6 +15,7 @@ block content
               #front-card(style='background: url(/images/backgrounds/#{postcard.background}.jpg);')
                 h2(style='color: #{postcard.frontFontColor}') Greetings from
                 #pc-state(style='width: #{postcard.state.width}px; height: #{postcard.state.height}px; background: url(/images/states/#{postcard.state.img}) no-repeat; margin: 0 auto;')
+                  .final-flag(style='background: url(/images/flags/#{postcard.flag.img}.png) no-repeat; background-size: 100%; top: #{postcard.flag.top}; left: #{postcard.flag.left};')
                 h2(style='color: #{postcard.frontFontColor}') #{postcard.city}, #{postcard.state.name}
             else
               #front-card(style='width: 500px; height: 700px; background: url(/images/backgrounds/#{postcard.background}.jpg);')

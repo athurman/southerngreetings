@@ -11,7 +11,8 @@ exports.upload = function(req, res){
   var filePath = __dirname + '/../public/uploads/' + req.body.postcardId + '/';
   fs.mkdirSync(filePath);
   var tempPath = req.files.file.path,
-        targetPath = path.resolve(filePath + req.files.file.name);
+    targetPath = path.resolve(filePath + req.files.file.name);
+
   if (path.extname(req.files.file.name).toLowerCase() === '.png' || '.jpg' || '.gif') {
     fs.rename(tempPath, targetPath, function(err) {
       if (err) throw err;

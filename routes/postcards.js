@@ -9,8 +9,7 @@ exports.upload = function(req, res){
   console.log(req.files.file);
   console.log(req.body.postcardId);
   var filePath = __dirname + '/../public/uploads/' + req.body.postcardId + '/';
-  console.log(x);
-  fs.mkdirSync(x);
+  fs.mkdirSync(filePath);
   var tempPath = req.files.file.path,
         targetPath = path.resolve(filePath + req.files.file.name);
   if (path.extname(req.files.file.name).toLowerCase() === '.png' || '.jpg' || '.gif') {

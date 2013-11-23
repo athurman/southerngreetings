@@ -8,9 +8,11 @@ exports.upload = function(req, res){
 
   console.log(req.files.file);
   console.log(req.body.postcardId);
-  fs.mkdirSync('./public/uploads/' + req.body.postcardId + '/');
+  var filePath = __dirname + '/../public/uploads/' + req.body.postcardId + '/';
+  console.log(x);
+  fs.mkdirSync(x);
   var tempPath = req.files.file.path,
-        targetPath = path.resolve('./public/uploads/' + req.body.postcardId + '/' + req.files.file.name);
+        targetPath = path.resolve(filePath + req.files.file.name);
   if (path.extname(req.files.file.name).toLowerCase() === '.png' || '.jpg' || '.gif') {
     fs.rename(tempPath, targetPath, function(err) {
       if (err) throw err;

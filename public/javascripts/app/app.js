@@ -44,6 +44,7 @@ function submitUploadImage(e) {
     if(data.status === 'error'){
       $('p#upload-error').css('color', 'red').text('There was an error uploading your file');
     } else {
+      console.log('made it back!');
       htmlAddUserImage(data);
     }
   });

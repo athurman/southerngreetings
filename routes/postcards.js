@@ -83,11 +83,15 @@ exports.createPDF = function(req, res){
 };
 
 exports.printPDF = function(req, res){
-  Postcard.findById(req.params.id).populate('state').exec(function(err, postcard){
-    var html = jade.renderFile( __dirname + '/..views/home/pdf.jade');
-    console.log(html);
 
-    res.render('home/pdf', {title: 'SouthernGreetings', postcard:postcard});
+  Postcard.findById(req.params.id).populate('state').exec(function(err, postcard){
+    var options = {postcard:postcard};
+    var html = jade.renderFile( __dirname + '/../views/home/print.jade', options);
+    wkhtmltopdf(html).pipe(res);
+
+    res.render('home/htmltopdf');
+
+
     // wkhtmltopdf('http://www.google.com').pipe(res);
   });
 };

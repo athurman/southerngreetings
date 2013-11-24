@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Postcard = mongoose.model('Postcard');
 var State = mongoose.model('State');
 var path = require('path');
+var jade = require('jade');
 var wkhtmltopdf = require('wkhtmltopdf');
 var fs = require('fs');
 
@@ -83,6 +84,9 @@ exports.createPDF = function(req, res){
 
 exports.printPDF = function(req, res){
   Postcard.findById(req.params.id).populate('state').exec(function(err, postcard){
+    var html = jade.renderFile( __dirname + '/..views/home/pdf.jade');
+    console.log(html);
+
     res.render('home/pdf', {title: 'SouthernGreetings', postcard:postcard});
     // wkhtmltopdf('http://www.google.com').pipe(res);
   });

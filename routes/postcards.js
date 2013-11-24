@@ -83,6 +83,6 @@ exports.createPDF = function(req, res){
 exports.printPDF = function(req, res){
   Postcard.findById(req.params.id).populate('state').exec(function(err, postcard){
     res.render('home/pdf', {title: 'SouthernGreetings', postcard:postcard});
-    wkhtmltopdf('/postcards/' + postcard._id + '/pdf', { pageSize: 'letter' }).pipe(fs.createReadStream('SouthernGreetings.pdf'));
+    // wkhtmltopdf('http://www.google.com').pipe(res);
   });
 };

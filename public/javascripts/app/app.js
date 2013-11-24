@@ -12,7 +12,8 @@ function initialize(){
   $('#submit-back').on('click', clickBackPostcardSubmit);
   $('a#submit-image').on('click', submitUploadImage);
   $('#choose-flag div').on('click', clickCreateFlag);
-  $('#print').on('click', clickPrintCardtoImage);
+  // $('#print').on('click', clickPrintCardtoImage);
+  $('#print').on('click', clickPrintCard);
 }
 
 // ------------------------------------------------------------------//
@@ -150,13 +151,22 @@ function clickCreateFlag() {
   draggabillyInitialize();
 }
 
-function clickPrintCardtoImage() {
-  html2canvas($('#front-card'), {
-    onrendered: function(canvas) {
-      $('#snapshot-container').append(canvas);
-    }
+function clickPrintCard(e) {
+  var url = '/postcard/' + $('#container').data('postcard-id') + '/print';
+
+  sendAjaxRequest(url, data, 'get', null, e, function(data){
+    console.log(data);
   });
+
 }
+
+// function clickPrintCardtoImage() {
+//   html2canvas($('#front-card'), {
+//     onrendered: function(canvas) {
+//       $('#snapshot-container').append(canvas);
+//     }
+//   });
+// }
 
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//

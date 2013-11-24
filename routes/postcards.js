@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Postcard = mongoose.model('Postcard');
 var State = mongoose.model('State');
 var path = require('path');
+var wkhtmltopdf = require('wkhtmltopdf');
 var fs = require('fs');
 
 exports.upload = function(req, res){

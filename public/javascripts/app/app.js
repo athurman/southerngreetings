@@ -1,4 +1,4 @@
-/* global document, sendAjaxRequest, sendAjaxFiles, FormData, Draggabilly, html2canvas, window, io */
+/* global document, sendAjaxRequest, sendAjaxFiles, FormData, Draggabilly, window, io */
 
 $(document).ready(initialize);
 
@@ -149,15 +149,14 @@ function clickCreateFlag() {
     $('.draggie').css('background', 'url(/images/flags/flag3.png) no-repeat').css('background-size', '100%').addClass('flag3').removeClass('flag2').removeClass('flag1');
   }
   draggabillyInitialize();
+  window.location.href = '/#front-card';
 }
 
 function clickPrintCard(e) {
-  var url = '/postcard/' + $('#container').data('postcard-id') + '/print';
-
-  sendAjaxRequest(url, data, 'get', null, e, function(data){
-    console.log(data);
+  var url = '/postcards/' + $('#container').data('postcard-id') + '/print';
+  sendAjaxRequest(url, {}, 'get', null, e, function(data){
+    htmlPdf(data);
   });
-
 }
 
 // function clickPrintCardtoImage() {
@@ -230,7 +229,17 @@ function htmlStepThree(postcard) {
   }
 }
 
+function htmlStepThree(postcard) {
+  if(postcard._id) {
+    window.location.href = '/postcards/' + postcard._id + '/complete';
+  }
+}
 
+function htmlPdf(postcard) {
+  if(postcard._id) {
+    window.location.href = '/postcards/' + postcard._id + '/pdf';
+  }
+}
 
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//

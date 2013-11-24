@@ -73,3 +73,16 @@ exports.delete = function(req, res){
     res.redirect('/');
   });
 };
+
+exports.createPDF = function(req, res){
+  Postcard.findById(req.params.id).populate('state').exec(function(err, postcard){
+    res.send(postcard);
+  });
+};
+
+exports.printPDF = function(req, res){
+  Postcard.findById(req.params.id).populate('state').exec(function(err, postcard){
+    res.render('home/pdf', {title: 'SouthernGreetings', postcard:postcard});
+    wkhtmltopdf('/postcards/' + postcard._id + '/pdf', { pageSize: 'letter' }).pipe(fs.createReadStream('SouthernGreetings.pdf'));
+  });
+};

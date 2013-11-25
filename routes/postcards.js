@@ -6,6 +6,10 @@ var jade = require('jade');
 var wkhtmltopdf = require('wkhtmltopdf');
 var fs = require('fs');
 
+exports.initialize = function(req, res){
+  res.render('home/create', {title: 'SouthernGreetings'});
+};
+
 exports.upload = function(req, res){
 
   console.log(req.files.file);
@@ -37,14 +41,17 @@ exports.upload = function(req, res){
 
 exports.create = function(req, res){
   State.findOne({name: req.body.state}, function(err, state){
+    req.body.user = res.locals.user;
     new Postcard({
                     city: req.body.city,
                     state: state,
                     background: req.body.background,
                     frontFontColor: req.body.frontFontColor,
-                    flag: req.body.flag
+                    flag: req.body.flag,
+                    user: req.body.user
                   }).save(function(err, postcard){
                     res.send({status: 'ok', id: postcard._id});
+                    console.log(postcard);
                   });
   });
 };

@@ -1,10 +1,11 @@
-/* global document, sendAjaxRequest, sendAjaxFiles, FormData, Draggabilly, window, io */
+/* global document, sendAjaxRequest, alert, sendAjaxFiles, FormData, Draggabilly, window, io */
 
 $(document).ready(initialize);
 
 function initialize(){
   $(document).foundation();
   initializeSocketIO();
+  $('#authentication-button').on('click', clickSubmitAuthentication);
   $('#register').on('click', clickRegister);
   $('#login').on('click', clickLogin);
 
@@ -23,12 +24,32 @@ function initialize(){
 // ------------------------------------------------------------------//
 // ------------------------CLICK FUNCTION----------------------------//
 
+function clickSubmitAuthentication(e) {
+  if($('#authentication-button').attr('data-email') === 'anonymous') {
+    window.location.href = '/';
+  } else {
+    var url = '/logout';
+    sendAjaxRequest(url, {}, 'POST', 'DELETE', e, function(data){
+      htmlLogout(data);
+    });
+  }
+  e.preventDefault();
+}
+
 function clickRegister(e) {
   var url = '/users';
   var data = $('form#authentication').serialize();
   sendAjaxRequest(url, data, 'POST', null, e, function(data){
     console.log(data);
     htmlRegisterComplete(data);
+  });
+}
+
+function clickLogin(e) {
+  var url = '/login';
+  var data = $('form#authentication').serialize();
+  sendAjaxRequest(url, data, 'post', 'put', e, function(data){
+    htmlLoginComplete(data);
   });
 }
 
@@ -90,7 +111,6 @@ function clickPreviewFront() {
   $('#front-card').removeClass('hidden');
   $('#choose-flag').removeClass('hidden');
   $('#submit-front').removeClass('hidden');
-  window.location.href = '/#front-card';
 }
 
 function clickFrontPostcardSubmit(e) {
@@ -162,7 +182,6 @@ function clickCreateFlag() {
     $('.draggie').css('background', 'url(/images/flags/flag3.png) no-repeat').css('background-size', '100%').addClass('flag3').removeClass('flag2').removeClass('flag1');
   }
   draggabillyInitialize();
-  window.location.href = '/#front-card';
 }
 
 function clickPrintCard(e) {
@@ -200,6 +219,25 @@ function htmlRegisterComplete(data) {
       alert(data.error.message + ': ' + data.error.errors.password.message);
       $('input[name="email"]').focus();
     }
+  }
+}
+
+function htmlLoginComplete(result) {
+  $('input[name=email]').val('');
+  $('input[name=password]').val('');
+  if(result.status === 'ok') {
+    $('#authentication-button').attr('data-email', result.email).text(result.email).addClass('alert');
+    window.location.href = '/create'
+  } else {
+    alert('There was something wrong with your username/password. Try again.');
+    $('input[name="email"]').focus();
+  }
+}
+
+function htmlLogout(result) {
+  if(result.status === 'ok') {
+    $('#authentication-button').attr('data-email', 'anonymous').text('Login | Sign Up').removeClass('alert');
+    window.location.href = '/';
   }
 }
 

@@ -26,6 +26,7 @@ app.delete('/logout', users.logout);
 
 app.post('/upload', postcards.upload);
 
+app.get('/create', postcards.initialize);
 app.post('/postcards', postcards.create);
 app.get('/postcards/:id', postcards.show);
 app.put('/postcards/:id/update', postcards.update);

@@ -43,7 +43,7 @@ exports.login = function(req, res) {
         }
       });
     } else {
-      res.send({status: 'user not fund.'});
+      res.send({status: 'user not found.'});
     }
   });
 };

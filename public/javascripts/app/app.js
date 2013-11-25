@@ -5,6 +5,9 @@ $(document).ready(initialize);
 function initialize(){
   $(document).foundation();
   initializeSocketIO();
+  $('#register').on('click', clickRegister);
+  $('#login').on('click', clickLogin);
+
   $('#backgrounds-container div').on('click', clickSelectBGPattern);
   $('#preview-front').on('click', clickPreviewFront);
   $('#submit-front').on('click', clickFrontPostcardSubmit);
@@ -19,6 +22,15 @@ function initialize(){
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
 // ------------------------CLICK FUNCTION----------------------------//
+
+function clickRegister(e) {
+  var url = '/users';
+  var data = $('form#authentication').serialize();
+  sendAjaxRequest(url, data, 'POST', null, e, function(data){
+    console.log(data);
+    htmlRegisterComplete(data);
+  });
+}
 
 function draggabillyInitialize(){
   var elem = document.querySelector('.draggie');
@@ -171,6 +183,25 @@ function clickPrintCard(e) {
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
 // ----------------------HTML FUNCTION-------------------------------//
+
+function htmlRegisterComplete(data) {
+  $('input[name=email]').val('');
+  $('input[name=password]').val('');
+
+  if(data.status === 'ok') {
+    var $p = $('<p>');
+    $p.text('Thanks for registering!  Please login to create your postcards.');
+    $('#message').append($p).css('background-color', '#0A5FB3');
+  } else {
+    if(data.error.errors.email) {
+      alert(data.error.message + ': ' + data.error.errors.email.message);
+      $('input[name="email"]').focus();
+    } else {
+      alert(data.error.message + ': ' + data.error.errors.password.message);
+      $('input[name="email"]').focus();
+    }
+  }
+}
 
 function htmlAddState(state, $h2, color) {
   var $div = $('<div>').attr('id','pc-state');

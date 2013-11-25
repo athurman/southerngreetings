@@ -89,7 +89,7 @@ exports.printPDF = function(req, res){
     var html = jade.renderFile( __dirname + '/../views/home/print.jade', options);
     wkhtmltopdf(html).pipe(res);
 
-    res.render('home/htmltopdf');
+    //res.render('home/htmltopdf');
 
 
     // wkhtmltopdf('http://www.google.com').pipe(res);

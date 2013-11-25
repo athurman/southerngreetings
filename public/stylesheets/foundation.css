@@ -23,7 +23,7 @@ body {
 
 body {
   background: white;
-  color: #222222;
+  color: #222;
   padding: 0;
   margin: 0;
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
@@ -1767,12 +1767,13 @@ input[type="file"] {
 
 /* We add basic fieldset styling */
 fieldset {
-  border: solid 1px #dddddd;
+  border: solid 1px #000;
   padding: 1.25em;
   margin: 1.125em 0; }
   fieldset legend {
+    font-family: 'Antic Slab', serif;
     font-weight: bold;
-    background: white;
+    font-size: 22px;
     padding: 0 0.1875em;
     margin: 0;
     margin-left: -0.1875em; }

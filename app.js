@@ -6,6 +6,7 @@ require('require-dir')('./models');
 
 // route definitions
 var home = require('./routes/home');
+var users = require('./routes/users');
 var postcards = require('./routes/postcards');
 var states = require('./routes/states');
 
@@ -18,6 +19,11 @@ require('./config').initialize(app, RedisStore);
 
 // routes
 app.get('/', home.index);
+
+app.post('/users', users.create);
+app.put('/login', users.login);
+app.delete('/logout', users.logout);
+
 app.post('/upload', postcards.upload);
 
 app.post('/postcards', postcards.create);

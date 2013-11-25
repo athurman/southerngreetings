@@ -227,8 +227,6 @@ function htmlLoginComplete(result) {
   $('input[name=password]').val('');
   if(result.status === 'ok') {
     $('#authentication-button').attr('data-email', result.email).text('Logout').addClass('alert');
-    $('#instructions').toggleClass('hidden');
-    $('form#authentication').toggleClass('hidden');
     window.location.href = '/create';
   } else {
     alert('There was something wrong with your username/password. Try again.');
@@ -240,8 +238,6 @@ function htmlLogout(result) {
   if(result.status === 'ok') {
     $('#authentication-button').attr('data-email', 'anonymous').text('Login | Sign Up').removeClass('alert');
     window.location.href = '/';
-    $('#instructions').toggleClass('hidden');
-    $('form#authentication').toggleClass('hidden');
   }
 }
 

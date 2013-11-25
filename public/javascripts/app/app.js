@@ -227,7 +227,7 @@ function htmlLoginComplete(result) {
   $('input[name=password]').val('');
   if(result.status === 'ok') {
     $('#authentication-button').attr('data-email', result.email).text('Logout').addClass('alert');
-    window.location.href = '/create';
+    window.location.href = '/view-cards';
   } else {
     alert('There was something wrong with your username/password. Try again.');
     $('input[name="email"]').focus();

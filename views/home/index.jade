@@ -6,16 +6,49 @@ block content
     h1(id='home-header') Create Season's Greetings Southern Style!
   .row
     .small-6.small-offset-3.columns
-      form#authentication(action='/', method='post')
-        fieldset
-          legend Login/Register
-          .row
-            mixin field(6, 'text', 'email', 'Email')
-            mixin field(6, 'password', 'password', 'Password')
-          .row
-            .small-3.small-offset-6.columns: button#register.radius.small.expand Register
-            .small-3.columns: button#login.radius.success.small.expand Login
+      if user
+        form#authentication.hidden(action='/', method='post')
+          fieldset
+            legend Login/Register
+            .row
+              mixin field(6, 'text', 'email', 'Email')
+              mixin field(6, 'password', 'password', 'Password')
+            .row
+              .small-3.small-offset-6.columns: button#register.radius.small.expand Register
+              .small-3.columns: button#login.radius.success.small.expand Login
+      else
+        form#authentication(action='/', method='post')
+          fieldset
+            legend Login/Register
+            .row
+              mixin field(6, 'text', 'email', 'Email')
+              mixin field(6, 'password', 'password', 'Password')
+            .row
+              .small-3.small-offset-6.columns: button#register.radius.small.expand Register
+              .small-3.columns: button#login.radius.success.small.expand Login
     .small-3.columns
   .row
     .small-12.columns
       #message
+        if user
+          #instructions
+            #border
+              h4 Create unique holiday cards in 3 easy steps
+              ol
+                li Design your city and state image for the front of your postcard.
+                li Choose an image and a holiday message for the back of your card.
+                li Receive a file of the template and have copies made at your local print shop.
+              p(id='left'): a(href='/create') CREATE
+              p(id='right'): a(href='/view-cards') VIEW CARDS
+              .clear
+        else
+          #instructions.hidden
+            #border
+              h4 Create unique holiday cards in 3 easy steps
+              ol
+                li Design your city and state image for the front of your postcard.
+                li Choose an image and a holiday message for the back of your card.
+                li Receive a file of the template and have copies made at your local print shop.
+              p(id='left'): a(href='/create') CREATE
+              p(id='right'): a(href='/create') VIEW CARDS
+              .clear

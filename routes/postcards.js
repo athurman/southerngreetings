@@ -10,6 +10,10 @@ exports.initialize = function(req, res){
   res.render('home/create', {title: 'SouthernGreetings'});
 };
 
+exports.viewAll = function(req, res){
+  res.render('home/view-cards', {title: 'SouthernGreetings'});
+};
+
 exports.upload = function(req, res){
 
   console.log(req.files.file);

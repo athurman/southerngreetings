@@ -4,6 +4,9 @@ var mongoose = require('mongoose');
 // model definitions
 require('require-dir')('./models');
 
+// define middleware
+var middleware = require('./lib/middleware');
+
 // route definitions
 var home = require('./routes/home');
 var users = require('./routes/users');
@@ -27,6 +30,7 @@ app.delete('/logout', users.logout);
 app.post('/upload', postcards.upload);
 
 app.get('/create', postcards.initialize);
+app.get('/view-cards', middleware.getPostcards, postcards.viewAll);
 app.post('/postcards', postcards.create);
 app.get('/postcards/:id', postcards.show);
 app.put('/postcards/:id/update', postcards.update);

@@ -27,6 +27,11 @@ h1{
   margin-bottom: 0px;
 }
 
+h2 {
+  font-family: @mainFont;
+  text-align: center;
+}
+
 p {
   display: block;
   margin-bottom: 10px;
@@ -37,10 +42,12 @@ p {
 
 ol {
   display: block;
+  text-align: left;
   margin: 2px;
   margin-left: 135px;
   margin-bottom: 20px;
   font-family: @mainFont;
+  color: #000;
 }
 
 select {
@@ -135,15 +142,46 @@ h4.slogan {
 }
 
 #login {
-  background-color: #0A5FB3;
-  border: 1px solid #01318B;
   font-family: @postcardFont;
   font-size: 16px;
+}
+
+#login, #create {
+  background-color: #0A5FB3;
+  border: 1px solid #01318B;
+}
+
+#create {
+  font-family: @mainFont;
 }
 
 #message {
   color: #fff;
   text-align: center;
+}
+
+#instructions {
+  background: #fff;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 50px;
+  h4 {
+    padding-top: 10px;
+    font-family: @mainFont;
+  }
+}
+
+#border {
+  border: 1px solid #CF453E;
+}
+
+#left {
+  float: left;
+}
+
+#right {
+  float: right;
+  margin-right: 100px;
 }
 
 // -------------------------------------------------------------- //
@@ -422,3 +460,25 @@ h4.slogan {
   margin: 25px;
 }
 
+
+#view-cards {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.card {
+  height: 175px;
+  width: 175px;
+  margin: 10px 35px;
+  float: left;
+
+  div{
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+  p {
+    text-align: center;
+    margin: 0px;
+    padding-top: 5px;
+  }
+}

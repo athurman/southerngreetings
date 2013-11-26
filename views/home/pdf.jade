@@ -10,6 +10,9 @@ head
   body(style='background: #fff;')
     .row
       .small-12.columns
+        #snapshot-container(data-postcard-id=postcard.id)
+    .row
+      .small-12.columns
          .row(style='margin-top: 50px;')
             .small-12.columns
               if postcard.state.isLandscape
@@ -31,7 +34,6 @@ head
                   img(src='/uploads/#{postcard.id}/#{postcard.backImg}')
                 #back-img-message
                   h4(style='color: #{postcard.backFontColor}') #{postcard.backGreeting} from #{postcard.backFamilyName}
-          .row
 
   script(src="/javascripts/vendor/jquery-1.10.2.js")
   script(src="/javascripts/vendor/foundation.min.js")

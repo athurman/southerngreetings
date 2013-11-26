@@ -89,20 +89,6 @@ exports.delete = function(req, res){
 
 exports.createPDF = function(req, res){
   Postcard.findById(req.params.id).populate('state').exec(function(err, postcard){
-    res.send(postcard);
-  });
-};
-
-exports.printPDF = function(req, res){
-
-  Postcard.findById(req.params.id).populate('state').exec(function(err, postcard){
-    var options = {postcard:postcard};
-    var html = jade.renderFile( __dirname + '/../views/home/print.jade', options);
-    wkhtmltopdf(html).pipe(res);
-
-    //res.render('home/htmltopdf');
-
-
-    // wkhtmltopdf('http://www.google.com').pipe(res);
+    res.render('home/pdf', {title: 'SouthernGreetings', postcard:postcard});
   });
 };

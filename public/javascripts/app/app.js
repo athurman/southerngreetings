@@ -131,8 +131,9 @@ function clickFrontPostcardSubmit(e) {
   var state = $('#states :selected').text();
   var color = $('#color').val();
   var background = $('#backgrounds-container .selected').attr('id');
+  var frontFontSize = $('#front-card h2').css('font-size');
   var url = '/postcards';
-  var data = {city:city, state:state, background:background, frontFontColor:color, flag:flag};
+  var data = {city:city, state:state, background:background, frontFontColor:color, flag:flag, frontFontSize:frontFontSize};
   //Save front portion of postcard to database, will update back portion on step 2 page.
   sendAjaxRequest(url, data, 'post', null, e, function(data){
     htmlStepTwo(data);

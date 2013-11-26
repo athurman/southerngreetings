@@ -34,8 +34,8 @@ block content
           .small-3.small-offset-3.columns
             form(action='/postcards/#{postcard.id}', method='post')
                   input(type='hidden', name='_method', value='delete')
-                  button#delete.alert.radius(type='submit') Delete
+                  button#delete.alert.radius.button.expand(type='submit') Delete
           .small-3.columns
-            input.button#print(type='button' value='Print')
+            button#print.button.radius.expand Print
           .small-3.columns
 

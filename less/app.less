@@ -57,6 +57,25 @@ select {
   border: 1px solid #ccc;
 }
 
+.nav a {
+  font-family: @mainFont;
+  color: #fff;
+  &:hover {
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    color: #30B5ED;
+  }
+}
+
+.login {
+  text-align: center;
+  font-family: @postcardFont;
+  font-size: 35px;
+  padding-bottom: 50px;
+}
+
 .border-top {
   background: url(/images/frame-top.png) no-repeat;
   background-size: 100%;

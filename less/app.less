@@ -57,6 +57,25 @@ select {
   border: 1px solid #ccc;
 }
 
+.nav a {
+  font-family: @mainFont;
+  color: #fff;
+  &:hover {
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    color: #30B5ED;
+  }
+}
+
+.login {
+  text-align: center;
+  font-family: @postcardFont;
+  font-size: 35px;
+  padding-bottom: 50px;
+}
+
 .border-top {
   background: url(/images/frame-top.png) no-repeat;
   background-size: 100%;
@@ -191,8 +210,6 @@ canvas {
 
 #preview-front {
   font-family: @mainFont;
-  font-size: 25px;
-  font-weight: bold;
   color: #fff;
   background-color: #CF453E;
   border: 1px solid #B53C36;
@@ -244,8 +261,6 @@ canvas {
 
 #submit-front {
   font-family: @mainFont;
-  font-size: 25px;
-  font-weight: bold;
   color: #fff;
   background-color: #0A5FB3;
   border: 1px solid #095199;
@@ -339,13 +354,10 @@ canvas {
 }
 
 #preview-back {
-
   font-family: @mainFont;
-  font-size: 25px;
-  font-weight: bold;
   color: #fff;
-  background-color: #22993B;
-  border: 1px solid #1C7F31;
+  background-color: #CF453E;
+  border: 1px solid #B53C36;
 }
 
 #back-img-container {
@@ -375,8 +387,6 @@ canvas {
 
 #submit-back {
   font-family: @mainFont;
-  font-size: 25px;
-  font-weight: bold;
   color: #fff;
   background-color: #0A5FB3;
   border: 1px solid #095199;
@@ -453,7 +463,6 @@ canvas {
   width: 175px;
   margin: 10px 35px;
   float: left;
-
   div{
     margin-top: 20px;
     margin-left: 10px;

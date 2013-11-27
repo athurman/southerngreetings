@@ -13,16 +13,16 @@ block content
           .small-12.columns
             if postcard.state.isLandscape
               #front-card(style='background: url(/images/backgrounds/#{postcard.background}.jpg);')
-                h2(style='color: #{postcard.frontFontColor}') Greetings from
+                h2(style='color: #{postcard.frontFontColor}; font-size: #{postcard.frontFontSize};') Greetings from
                 #pc-state(style='width: #{postcard.state.width}px; height: #{postcard.state.height}px; background: url(/images/states/#{postcard.state.img}) no-repeat; margin: 0 auto;')
                   .final-flag(style='background: url(/images/flags/#{postcard.flag.img}.png) no-repeat; background-size: 100%; top: #{postcard.flag.top}; left: #{postcard.flag.left};')
-                h2(style='color: #{postcard.frontFontColor}') #{postcard.city}, #{postcard.state.name}
+                h2(style='color: #{postcard.frontFontColor};  font-size: #{postcard.frontFontSize};') #{postcard.city}, #{postcard.state.name}
             else
               #front-card(style='width: 500px; height: 700px; background: url(/images/backgrounds/#{postcard.background}.jpg);')
-                h2(style='color: #{postcard.frontFontColor}') Greetings from
+                h2(style='color: #{postcard.frontFontColor};  font-size: #{postcard.frontFontSize};') Greetings from
                 #pc-state(style='width: #{postcard.state.width}px; height: #{postcard.state.height}px; background: url(/images/states/#{postcard.state.img}) no-repeat; margin: 0 auto;')
                   .final-flag(style='background: url(/images/flags/#{postcard.flag.img}.png) no-repeat; background-size: 100%; top: #{postcard.flag.top}; left: #{postcard.flag.left};')
-                h2(style='color: #{postcard.frontFontColor}') #{postcard.city}, #{postcard.state.name}
+                h2(style='color: #{postcard.frontFontColor};  font-size: #{postcard.frontFontSize};') #{postcard.city}, #{postcard.state.name}
         .row
           .small-12.columns
             #back-card
@@ -34,8 +34,8 @@ block content
           .small-3.small-offset-3.columns
             form(action='/postcards/#{postcard.id}', method='post')
                   input(type='hidden', name='_method', value='delete')
-                  button#delete.alert.radius(type='submit') Delete
+                  button#delete.alert.radius.button.expand(type='submit') Delete
           .small-3.columns
-            input.button#print(type='button' value='Print')
+            button#print.button.radius.expand Print
           .small-3.columns
 

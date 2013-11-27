@@ -9,7 +9,9 @@
 
     section.top-bar-section
       ul.left
-
+        if user
+          li.nav: a(href="/create") Create Cards
+          li.nav: a(href="/view-cards") View Cards
       ul.right
         li.divider
         if user

@@ -52,6 +52,7 @@ exports.create = function(req, res){
                     background: req.body.background,
                     frontFontColor: req.body.frontFontColor,
                     flag: req.body.flag,
+                    frontFontSize: req.body.frontFontSize,
                     user: req.body.user
                   }).save(function(err, postcard){
                     res.send({status: 'ok', id: postcard._id});

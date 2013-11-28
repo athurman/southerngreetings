@@ -5,7 +5,6 @@ $(document).ready(initialize);
 function initialize(){
   $(document).foundation();
   initializeSocketIO();
-  // printCardtoImage();
   $('#authentication-button').on('click', clickSubmitAuthentication);
   $('#register').on('click', clickRegister);
   $('#login').on('click', clickLogin);
@@ -187,12 +186,8 @@ function clickCreateFlag(e) {
 
 function clickPrintCard(e) {
   var id = $('#container').data('postcard-id');
-  // var url = '/postcards/' + id + '/print-pdf';
 
   window.location.href = '/postcards/' + id + '/print-pdf';
-  // sendAjaxRequest(url, {}, 'get', null, e, function(data){
-  //   console.log(data);
-  // });
 }
 
 
@@ -306,22 +301,6 @@ function htmlPdf(postcard, id) {
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
-
-// function printCardtoImage() {
-
-//   if($('body div#snapshot-container')){
-//     html2canvas($('#front-card'), {
-//       onrendered: function(canvas) {
-//         $('#snapshot-container').append(canvas);
-//       }
-//     });
-//     html2canvas($('#back-card'), {
-//       onrendered: function(canvas) {
-//         $('#snapshot-container').append(canvas);
-//       }
-//     });
-//   }
-// }
 
 var socket;
 

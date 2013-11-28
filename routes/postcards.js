@@ -6,8 +6,6 @@ var jade = require('jade');
 var fs = require('fs');
 var phantomjs = require('phantomjs');
 var wkhtmltopdf = require('wkhtmltopdf');
-// var binPath = phantomjs.path;
-// var NodePDF = require('nodepdf');
 
 
 exports.initialize = function(req, res){

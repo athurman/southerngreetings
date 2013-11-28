@@ -19,7 +19,7 @@
     "connect-redis": "*",
     "require-dir": "*",
     "bcrypt": "*",
-    "wkhtmltopdf": "*",
+    "wkhtmltopdf": "*"
   },
   "devDependencies": {
     "grunt": "*",

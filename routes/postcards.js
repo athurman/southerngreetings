@@ -4,7 +4,6 @@ var State = mongoose.model('State');
 var path = require('path');
 var jade = require('jade');
 var fs = require('fs');
-var phantomjs = require('phantomjs');
 var wkhtmltopdf = require('wkhtmltopdf');
 
 

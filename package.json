@@ -20,7 +20,6 @@
     "require-dir": "*",
     "bcrypt": "*",
     "wkhtmltopdf": "*",
-    "phantomjs": "*"
   },
   "devDependencies": {
     "grunt": "*",

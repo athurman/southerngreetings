@@ -98,5 +98,5 @@ exports.createPDF = function(req, res){
 
 exports.printPDF = function(req, res){
   console.log(req.params.id);
-  wkhtmltopdf('http://southern-greetings.com/postcards/' + req.params.id + '/print').pipe(res);
+  wkhtmltopdf('http://www.southern-greetings.com/postcards/' + req.params.id + '/print').pipe(res);
 };

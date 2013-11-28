@@ -37,6 +37,7 @@ app.put('/postcards/:id/update', postcards.update);
 app.get('/postcards/:id/complete', postcards.print);
 app.delete('/postcards/:id', postcards.delete);
 app.get('/postcards/:id/print', postcards.createPDF);
+app.get('/postcards/:id/print-pdf', postcards.printPDF);
 
 app.get('/make-states', states.make);
 app.get('/states', states.find);

@@ -19,7 +19,9 @@
     "connect-redis": "*",
     "require-dir": "*",
     "bcrypt": "*",
-    "wkhtmltopdf": "*"
+    "wkhtmltopdf": "*",
+    "phantomjs": "*",
+    "nodepdf": "*"
   },
   "devDependencies": {
     "grunt": "*",

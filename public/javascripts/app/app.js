@@ -5,7 +5,6 @@ $(document).ready(initialize);
 function initialize(){
   $(document).foundation();
   initializeSocketIO();
-  printCardtoImage();
   $('#authentication-button').on('click', clickSubmitAuthentication);
   $('#register').on('click', clickRegister);
   $('#login').on('click', clickLogin);
@@ -187,11 +186,8 @@ function clickCreateFlag(e) {
 
 function clickPrintCard(e) {
   var id = $('#container').data('postcard-id');
-  var url = '/postcards/' + id + '/print';
 
-  sendAjaxRequest(url, {}, 'get', null, e, function(data){
-    htmlPdf(data, id);
-  });
+  window.location.href = '/postcards/' + id + '/print-pdf';
 }
 
 
@@ -292,35 +288,19 @@ function htmlStepTwo(result) {
 
 function htmlStepThree(postcard) {
   if(postcard._id) {
+    console.log(postcard._id);
     window.location.href = '/postcards/' + postcard._id + '/complete';
   }
 }
 
 
 function htmlPdf(postcard, id) {
-    window.location.href = '/postcards/' + id + '/print';
-
+    window.location.href = '/postcards/' + id + '/print-pdf';
 }
 
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//
-
-function printCardtoImage() {
-
-  if($('body div#snapshot-container')){
-    html2canvas($('#front-card'), {
-      onrendered: function(canvas) {
-        $('#snapshot-container').append(canvas);
-      }
-    });
-    html2canvas($('#back-card'), {
-      onrendered: function(canvas) {
-        $('#snapshot-container').append(canvas);
-      }
-    });
-  }
-}
 
 var socket;
 

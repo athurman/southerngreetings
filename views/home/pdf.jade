@@ -5,6 +5,7 @@ head
   meta(name="viewport", content="width=device-width")
   link(rel="stylesheet", href="/stylesheets/normalize.css")
   link(rel="stylesheet", href="/stylesheets/foundation.css")
+  link(rel="shortcut icon" type="image/ico" href="images/favicon.ico")
   link(rel="stylesheet", href="/less/app.css")
   link(href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css')
   script(src="/javascripts/vendor/custom.modernizr.js")
@@ -19,8 +20,8 @@ head
               if postcard.state.isLandscape
                 #front-card(style='width: 500px; height: 357px; background: url(/images/backgrounds/#{postcard.background}.jpg);')
                   h2(style='color: #{postcard.frontFontColor}; font-family: "Damion", cursive; font-size: 50px;') Greetings from
-                  #pc-state(style='width: #{postcard.state.width * 0.8}px; height: #{postcard.state.height * 0.8}px; background: url(/images/states/#{postcard.state.img}) no-repeat; margin: 0 auto; background-size: 100%;')
-                    .final-flag(style='background: url(/images/flags/#{postcard.flag.img}.png) no-repeat; height: 20px; width: 20px; background-size: 100%; top: #{parseInt((postcard.flag.top).slice(0,-2) * 0.8)}px; left: #{parseInt((postcard.flag.left).slice(0,-2) * 0.8)}px;')
+                  #pc-state(style='width: #{postcard.state.width * 0.7}px; height: #{postcard.state.height * 0.7}px; background: url(/images/states/#{postcard.state.img}) no-repeat; margin: 0 auto; background-size: 100%;')
+                    .final-flag(style='background: url(/images/flags/#{postcard.flag.img}.png) no-repeat; height: 20px; width: 20px; background-size: 100%; top: #{parseInt((postcard.flag.top).slice(0,-2) * 0.7)}px; left: #{parseInt((postcard.flag.left).slice(0,-2) * 0.7)}px;')
                   h2(style='color: #{postcard.frontFontColor}; font-family: "Damion", cursive; font-size: 50px;') #{postcard.city}, #{postcard.state.name}
               else
                 #front-card(style='width: 357px; height: 500px; background: url(/images/backgrounds/#{postcard.background}.jpg);')

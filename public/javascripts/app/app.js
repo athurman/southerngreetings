@@ -252,7 +252,7 @@ function htmlAddState(state, $h2, color) {
   if(h2Height > 112) {
     $('#front-card h2').css('font-size', '60px');
   } else {
-    $('#front-card h2').css('font-size', '80px');
+    $('#front-card h2').css('font-size', '72px');
   }
 }
 

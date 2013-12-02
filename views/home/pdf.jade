@@ -19,7 +19,7 @@ head
             .small-12.columns
               if postcard.state.isLandscape
                 #front-card(style='width: 500px; height: 357px; background: url(/images/backgrounds/#{postcard.background}.jpg);')
-                  h2(style='color: #{postcard.frontFontColor}; font-family: "Damion", cursive; font-size: 50px;') Greetings from
+                  h2(style='color: #{postcard.frontFontColor}; font-family: "Monotype Corsiva", "Apple Chancery", "ITC Zapf Chancery", "URW Chancery L", cursive; font-size: 50px;') Greetings from
                   #pc-state(style='width: #{postcard.state.width * 0.7}px; height: #{postcard.state.height * 0.7}px; background: url(/images/states/#{postcard.state.img}) no-repeat; margin: 0 auto; background-size: 100%;')
                     .final-flag(style='background: url(/images/flags/#{postcard.flag.img}.png) no-repeat; height: 20px; width: 20px; background-size: 100%; top: #{parseInt((postcard.flag.top).slice(0,-2) * 0.7)}px; left: #{parseInt((postcard.flag.left).slice(0,-2) * 0.7)}px;')
                   h2(style='color: #{postcard.frontFontColor}; font-family: "Damion", cursive; font-size: 50px;') #{postcard.city}, #{postcard.state.name}

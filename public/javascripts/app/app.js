@@ -92,7 +92,7 @@ function clickSelectBGPattern() {
   $this.addClass('selected');
 }
 
-function clickPreviewFront() {
+function clickPreviewFront(e) {
   $('#front-card #pc-state').remove();
   $('#front-card h2:nth-of-type(2)').remove();
 
@@ -139,7 +139,7 @@ function clickFrontPostcardSubmit(e) {
   });
 }
 
-function clickPreviewBack() {
+function clickPreviewBack(e) {
   $('#back-img-message h4').remove();
 
   var backGreeting = $('#seasons-greeting :selected').text();
@@ -152,7 +152,6 @@ function clickPreviewBack() {
 
   $('#back-card').removeClass('hidden');
   $('#submit-back').removeClass('hidden');
-  // window.location.href = '/' + $('#container').data('postcard-id') + '/#back-card';
 }
 
 function clickBackPostcardSubmit(e) {
@@ -182,6 +181,8 @@ function clickCreateFlag(e) {
     $('.draggie').css('background', 'url(/images/flags/flag3.png) no-repeat').css('background-size', '100%').addClass('flag3').removeClass('flag2').removeClass('flag1');
   }
   draggabillyInitialize();
+  window.location.href = '/create/#front-card';
+  e.preventDefault();
 }
 
 function clickPrintCard(e) {
@@ -266,6 +267,15 @@ function htmlAddBackground(background) {
   if(background === 'pattern3') {
     $('#front-card').css('background', 'url(/images/backgrounds/pattern3.jpg)');
   }
+  if(background === 'pattern4') {
+    $('#front-card').css('background', 'url(/images/backgrounds/pattern4.jpg)');
+  }
+  if(background === 'pattern5') {
+    $('#front-card').css('background', 'url(/images/backgrounds/pattern5.jpg)');
+  }
+  if(background === 'pattern6') {
+    $('#front-card').css('background', 'url(/images/backgrounds/pattern6.jpg)');
+  }
 }
 
 function htmlAddUserImage(postcard) {
@@ -294,9 +304,9 @@ function htmlStepThree(postcard) {
 }
 
 
-function htmlPdf(postcard, id) {
-    window.location.href = '/postcards/' + id + '/print-pdf';
-}
+// function htmlPdf(postcard, id) {
+//     window.location.href = '/postcards/' + id + '/print-pdf';
+// }
 
 // ------------------------------------------------------------------//
 // ------------------------------------------------------------------//

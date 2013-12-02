@@ -4,7 +4,7 @@ var State = mongoose.model('State');
 exports.make = function(req, res){
 
   new State({name:'AL', isLandscape:false, height:428, width:285, img:'al.png'}).save();
-  // new State({name:'AK', isLandscape:false, height:0, width:0, img:'ak.png'}).save();
+  new State({name:'AK', height:250, width:468, img:'ak.png'}).save();
   new State({name:'AR', isLandscape:false, height:387, width:450, img:'ar.png'}).save();
   new State({name:'AZ', isLandscape:false, height:428, width:377, img:'az.png'}).save();
   new State({name:'CA', isLandscape:false, height:428, width:383, img:'ca.png'}).save();
@@ -13,7 +13,7 @@ exports.make = function(req, res){
   new State({name:'DE', isLandscape:false, height:428, width:172, img:'de.png'}).save();
   new State({name:'FL',isLandscape:false, height:347, width:450, img:'fl.png'}).save();
   new State({name:'GA', isLandscape:false, height:428, width:385, img:'ga.png'}).save();
-  // new State({name:'HI', isLandscape:false, height:0, width:0, img:'hi.png'}).save();
+  new State({name:'HI', height:225, width:367, img:'hi.png'}).save();
   new State({name:'IA', isLandscape:false, height:293, width:450, img:'ia.png'}).save();
   new State({name:'ID', isLandscape:false, height:428, width:277, img:'id.png'}).save();
   new State({name:'IL', isLandscape:false, height:428, width:244, img:'il.png'}).save();
@@ -43,7 +43,7 @@ exports.make = function(req, res){
   new State({name:'PA', isLandscape:false, height:260, width:450, img:'pa.png'}).save();
   new State({name:'RI', isLandscape:false, height:428, width:259, img:'ri.png'}).save();
   new State({name:'SC', isLandscape:false, height:350, width:450, img:'sc.png'}).save();
-  new State({name:'SD', height:278, width:450, img:'sd.png'}).save();
+  new State({name:'SD', height:245, width:397, img:'sd.png'}).save();
   new State({name:'TN', height:167, width:650, img:'tn.png'}).save();
   new State({name:'TX', isLandscape:false, height:402, width:450, img:'tx.png'}).save();
   new State({name:'UT', isLandscape:false, height:428, width:343, img:'ut.png'}).save();

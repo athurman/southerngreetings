@@ -140,18 +140,24 @@ function clickFrontPostcardSubmit(e) {
 }
 
 function clickPreviewBack(e) {
-  $('#back-img-message h4').remove();
+  if($('#upload-image').hasClass('hidden')) {
+    $('#back-img-message h4').remove();
 
-  var backGreeting = $('#seasons-greeting :selected').text();
-  var backFamilyName = $('#family-name').val();
-  var color = $('#color-back').val();
+    var backGreeting = $('#seasons-greeting :selected').text();
+    var backFamilyName = $('#family-name').val();
+    var color = $('#color-back').val();
 
-  var $h4 = $('<h4>').text(backGreeting + ' from ' + backFamilyName);
-  $h4.css('color', color);
-  $('#back-img-message').append($h4);
+    var $h4 = $('<h4>').text(backGreeting + ' from ' + backFamilyName);
+    $h4.css('color', color);
+    $('#back-img-message').append($h4);
 
-  $('#back-card').removeClass('hidden');
-  $('#submit-back').removeClass('hidden');
+    $('#back-card').removeClass('hidden');
+    $('#submit-back').removeClass('hidden');
+  } else {
+    var $p = $('<p>').css('color', 'red');
+    $p.text('Please submit an image.');
+    $('#list').append($p);
+  }
 }
 
 function clickBackPostcardSubmit(e) {
@@ -181,8 +187,6 @@ function clickCreateFlag(e) {
     $('.draggie').css('background', 'url(/images/flags/flag3.png) no-repeat').css('background-size', '100%').addClass('flag3').removeClass('flag2').removeClass('flag1');
   }
   draggabillyInitialize();
-  window.location.href = '/create/#front-card';
-  e.preventDefault();
 }
 
 function clickPrintCard(e) {
@@ -286,6 +290,7 @@ function htmlAddUserImage(postcard) {
   $img.attr('src', '../uploads/' + postcard._id + '/' + postcard.backImg);
   $imgThumb.attr('src', '../uploads/' + postcard._id + '/' + postcard.backImg);
 
+  $('#list p').remove();
   $('#list').append($imgThumb);
   $('#back-img-container').append($img);
 }
